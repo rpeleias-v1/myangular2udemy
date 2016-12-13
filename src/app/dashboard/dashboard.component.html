@@ -3,6 +3,23 @@
 	<p class="lead">Stocks, Bonds, Mutual Funds</p>
 	<hr class="my-2">
 	<p>A simple Angular 2 finance application.</p>
+
+	<div class="m-x-auto p-a-2" style="width: 900px">
+	<table class="table table-striped table-inverse table-hover table-sm center">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>NAME</th>
+				<th>STOCK CODE</th>
+			</tr>			
+		</thead>
+		<tr *ngFor="let stock of stocks">
+			<td>{{stock.id}}</td>
+			<td>{{stock.name}}</td>
+			<td>{{stock.stockCode}}</td>
+		</tr>		
+	</table>
+	</div>
 	<p class="lead">
 		<a class="btn btn-primary btn-lg" href="#" role="button">START</a>
 	</p>

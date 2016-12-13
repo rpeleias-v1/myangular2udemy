@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { StockService } from '../stock.service';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  stocks: string[];
+
+  constructor(private stockService: StockService) { }
 
   ngOnInit() {
+    this.getAllStocks();
+
+  }
+
+  getAllStocks() {
+    this.stockService.getStocksAPI().subscribe(
+      data => this.stocks = data,
+      error => console.log('Server Error')
+    );
   }
 
 }
