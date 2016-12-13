@@ -20,4 +20,16 @@ export class StockService {
     getStocks(): string[] {
         return ['AAPL', 'IBM', 'GOOG', 'UDEMY', 'UBER', 'ABC', 'XYZ'];
     }
+
+    createStock(newStockCode: string, newName: string): Observable<any> {
+        return this.http.post("http://localhost:8080/stocks", {name: newName, stockCode: newStockCode});
+    }
+
+    updateStock(stockId:string, newStockCode: string, newName: string): Observable<any> {
+        return this.http.put("http://localhost:3000/stocks/" + stockId , 
+        {
+            name: newName,
+            stockCode: newStockCode
+        });
+    }
 }
