@@ -29,13 +29,24 @@ export class DashboardComponent implements OnInit {
   }
 
   createStock(newStockCode: string, newName: string) {
-    this.stockService.createStock(newStockCode, newName).subscribe();
-    location.reload();
+    this.stockService.createStock(newStockCode, newName)
+      .subscribe(data => {
+        this.getAllStocks();
+      });
   }
 
-  updateStock(newStockCode: string, newName:string) {
-    this.stockService.updateStock(this.selectedStock.id, newStockCode, newName).subscribe();
-    location.reload();
+  updateStock(newStockCode: string, newName: string) {
+    this.stockService.updateStock(this.selectedStock.id, newStockCode, newName)
+      .subscribe(data => {
+        this.getAllStocks();
+      });
+  }
+
+  deleteStock(stockId: string) {
+    this.stockService.deleteStock(stockId)
+      .subscribe(data => {
+        this.getAllStocks();
+      });
   }
 
   loadDetails(stock: any) {

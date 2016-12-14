@@ -1,3 +1,5 @@
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createModal">CREATE </button>
+
 <div class="m-x-auto p-a-2 m-t-2" style="width: 800px" *ngIf="updateEnabled">
 	Stock Code: <input #updateStockCode [value]="selectedStock.stockCode"/>
 	Stock Name: <input #updateStockName [value]="selectedStock.name"/>
@@ -18,7 +20,10 @@
 		</thead>
 		<tr *ngFor="let stock of stocks">
 			<td>{{stock.id}}</td>
-			<td><button type="button" class="btn btn-warning" (click)="loadDetails(stock)"> UPDATE </button></td>
+			<td>
+				<button type="button" class="btn btn-warning" (click)="loadDetails(stock)"> UPDATE </button>
+				<button type="button" class="btn btn-danger" (click)="deleteStock(stock.id)"> DELETE </button>
+			</td>
 			<td>{{stock.name}}</td>
 			<td>{{stock.stockCode}}</td>
 		</tr>
@@ -26,12 +31,39 @@
 </div>
 
 <hr/>
-<h2>Add Stock</h2>
-Stock Code: <input #newStockCode />
-Stock Name: <input #newName />
 
-<button type="button" class="btn btn-primary" (click)="createStock(newStockCode.value, newName.value)">CREATE </button>
 
+
+<!-- Create Modal HTml Template-->
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Add a New Stock</h4>
+      </div>
+      <div class="modal-body">
+
+       	Code: <input #newStockCode />
+		Name: <input #newName />
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="createStock(newStockCode.value, newName.value);newStockCode.value='';newName.value=''" 
+			data-dismiss="modal">
+			Add Stock
+		</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- -->
 
 <div class="jumbotron">
 	<h1 class="display-3">Angular 2 Finance</h1>
