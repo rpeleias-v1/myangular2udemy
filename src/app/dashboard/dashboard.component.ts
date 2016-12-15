@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Stock } from '../stock';
 import { StockService } from '../stock.service';
 
 @Component({
@@ -13,6 +14,9 @@ export class DashboardComponent implements OnInit {
 
   selectedStock: any;
   updateEnabled = false;
+
+  submitted = false;
+  newStock = new Stock(0, '', '');
 
   constructor(private stockService: StockService) { }
 
@@ -52,6 +56,15 @@ export class DashboardComponent implements OnInit {
   loadDetails(stock: any) {
     this.updateEnabled = true;
     this.selectedStock = stock;
+  }
+
+  onSubmit() {
+    this.submitted = true;
+  }
+
+  cancel() {
+    this.submitted = false;
+    this.newStock = new Stock(0, '', '');
   }
 
 }

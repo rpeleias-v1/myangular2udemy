@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import { StockService } from './stock.service';
+import {Stock} from './stock';
 
 @Component({
     selector: 'stocks',
@@ -50,7 +51,7 @@ export class StocksComponent {
     
     title = 'List of Stocks: ';    
     stocks;
-    showStockMarket = true;
+    showStockMarket = true;    
 
     stockMarkets = ['NYSE', 'NASDAQ', 'EURONEXT', 'HKSE', 'LSE'];
 
